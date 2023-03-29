@@ -73,23 +73,23 @@ class Hud extends Feature {
 
         this.numberUtils = require("../../utils/numberUtils.js")
         
-        this.hudColorSetting = new DropdownSetting("Color to Render HUD Elements", "Choose the color to render your HUD elements on screen", "&6", "hud_element_color", this, {
-            "&0": "&00",
-            "&1": "&11",
-            "&2": "&22",
-            "&3": "&33",
-            "&4": "&44",
-            "&5": "&55",
-            "&6": "&66",
-            "&7": "&77",
-            "&8": "&88",
-            "&9": "&99",
-            "&a": "&aa",
-            "&b": "&bb",
-            "&c": "&cc",
-            "&d": "&dd",
-            "&e": "&ee",
-            "&f": "&ff",
+        this.hudColorSetting = new DropdownSetting("Color to Render HUD Elements", "Dark mode currently breaks this :/", "&6", "hud_element_color", this, {
+            "&0": "§00 (Black)",
+            "&1": "§11 (Dark Blue)",
+            "&2": "§22 (Green)",
+            "&3": "§33 (Cyan)",
+            "&4": "§44 (Dark Red)",
+            "&5": "§55 (Purple)",
+            "&6": "§66 (Orange)",
+            "&7": "§77 (Light Gray)",
+            "&8": "§88 (Dark Gray)",
+            "&9": "§99 (Blue)",
+            "&a": "§aa (Lime)",
+            "&b": "§bb (Light Blue)",
+            "&c": "§cc (Red)",
+            "&d": "§dd (Pink)",
+            "&e": "§ee (Yellow)",
+            "&f": "§ff (White)",
             "§Z": "§ZSBA Chroma"
         })
         // this.hudColorSetting.getValue() + "Name&7>" -- used to add the color to the gui element
