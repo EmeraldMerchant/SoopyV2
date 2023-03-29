@@ -72,7 +72,20 @@ class Hud extends Feature {
         this.initVariables()
 
         this.numberUtils = require("../../utils/numberUtils.js")
-
+        
+        this.hudColorSetting = new DropdownSetting("Color to Render HUD Elements", "", "&6", "hud_element_color", this, {
+            "&0": "&0",
+            "&1": "&1",
+            "&2": "&2",
+            "&3": "&3",
+            "&4": "&4",
+            "&5": "&5",
+            "&6": "&6",
+            "&7": "&7",
+            "&8": "&8",
+            "&9": "&9",
+            "&10": "&10"
+        })
         this.fpsEnabledSetting = new ToggleSetting("Fps enabled", "Whether the fps is rendered onto the screen", true, "fps_enabled", this)
         this.fpsFastSetting = new ToggleSetting("Fast fps update", "Whether the fps is updated fast instead of once per second", true, "fps_fast", this).requires(this.fpsEnabledSetting)
         this.fpsLowSetting = new ToggleSetting("Low fps display", "Display the minumum frame time next to fps (usefull for finding framedrops)", true, "fps_low", this).requires(this.fpsFastSetting)
