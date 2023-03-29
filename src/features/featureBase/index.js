@@ -1,24 +1,23 @@
-/// <reference types="../../../../CTAutocomplete" />
-/// <reference lib="es2015" />
-import Feature from "../../featureClass/class";
 
-class FeatureBase extends Feature {
-    constructor() {
-        super()
-    }
 
-    onEnable() {
-        this.initVariables()
-    }
+import Feature from"../../featureClass/class";
 
-    initVariables() {
-    }
-
-    onDisable() {
-        this.initVariables()
-    }
+class FeatureBase extends Feature{
+constructor(){
+super();
 }
 
-module.exports = {
-    class: new FeatureBase()
+onEnable(){
+this.initVariables();
 }
+
+initVariables(){
+}
+
+onDisable(){
+this.initVariables();
+}}
+
+
+module.exports={
+class:new FeatureBase};

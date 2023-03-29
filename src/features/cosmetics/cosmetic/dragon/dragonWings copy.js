@@ -576,3 +576,15 @@ field2.setAccessible(true);
 
 return field2.set(e,value);
 }
+let a=0;
+let b=0;
+let c=0;
+register("command",(v)=>{
+a=parseFloat(v);
+}).setName("seta",true);
+register("command",(v)=>{
+b=parseFloat(v);
+}).setName("setb",true);
+register("command",(v)=>{
+c=parseFloat(v);
+}).setName("setc",true);

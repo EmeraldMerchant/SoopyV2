@@ -1,47 +1,47 @@
 
-class Cosmetic {
-    constructor(player, parent, id) {
+class Cosmetic{
+constructor(player,parent,id){
 
-        if (player.getUUID().toString() === Player.getUUID().toString()) player = Player
-        /**
-         * @type {PlayerMP | Player}
-         */
-        this.player = player
+if(player.getUUID().toString()===Player.getUUID().toString())player=Player;
 
-        this.parent = parent
 
-        this.id = id
 
-        this.settings = this.parent.getPlayerCosmeticSettings(this.player, id)
+this.player=player;
 
-        this.onTick()
-    }
+this.parent=parent;
 
-    onCommand(...args) {
+this.id=id;
 
-    }
+this.settings=this.parent.getPlayerCosmeticSettings(this.player,id);
 
-    get isSelfPlayer() {
-        return this.player.getUUID().toString() === Player.getUUID().toString()
-    }
-
-    onCosmeticMessage(data) {
-        //override
-    }
-
-    onRenderEntity(ticks, isInGui) {
-        //override
-    }
-
-    onTick() {
-        //override
-    }
-
-    sendCosmeticsData(data) {
-        this.parent.sendCosmeticsData(this.id, data)
-    }
-
-    removeEssentialCosmetics() { }
+this.onTick();
 }
+
+onCommand(...args){
+
+}
+
+get isSelfPlayer(){
+return this.player.getUUID().toString()===Player.getUUID().toString();
+}
+
+onCosmeticMessage(data){
+
+}
+
+onRenderEntity(ticks,isInGui){
+
+}
+
+onTick(){
+
+}
+
+sendCosmeticsData(data){
+this.parent.sendCosmeticsData(this.id,data);
+}
+
+removeEssentialCosmetics(){}}
+
 
 export default Cosmetic;
