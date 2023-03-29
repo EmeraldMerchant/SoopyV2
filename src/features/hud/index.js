@@ -51,7 +51,7 @@ class Hud extends Feature {
         this.Instant = undefined
 
         this.lastFrameRates = undefined
-
+        this.hudColorSetting = undefined
         this.fps = undefined
         this.lowFps = undefined
 
@@ -73,19 +73,26 @@ class Hud extends Feature {
 
         this.numberUtils = require("../../utils/numberUtils.js")
         
-        this.hudColorSetting = new DropdownSetting("Color to Render HUD Elements", "", "&6", "hud_element_color", this, {
-            "&0": "&0",
-            "&1": "&1",
-            "&2": "&2",
-            "&3": "&3",
-            "&4": "&4",
-            "&5": "&5",
-            "&6": "&6",
-            "&7": "&7",
-            "&8": "&8",
-            "&9": "&9",
-            "&10": "&10"
+        this.hudColorSetting = new DropdownSetting("Color to Render HUD Elements", "Choose the color to render your HUD elements on screen", "&6", "hud_element_color", this, {
+            "&0": "&00",
+            "&1": "&11",
+            "&2": "&22",
+            "&3": "&33",
+            "&4": "&44",
+            "&5": "&55",
+            "&6": "&66",
+            "&7": "&77",
+            "&8": "&88",
+            "&9": "&99",
+            "&a": "&aa",
+            "&b": "&bb",
+            "&c": "&cc",
+            "&d": "&dd",
+            "&e": "&ee",
+            "&f": "&ff",
+            "§Z": "§ZSBA Chroma"
         })
+        // this.hudColorSetting.getValue() + "Name&7>" -- used to add the color to the gui element
         this.fpsEnabledSetting = new ToggleSetting("Fps enabled", "Whether the fps is rendered onto the screen", true, "fps_enabled", this)
         this.fpsFastSetting = new ToggleSetting("Fast fps update", "Whether the fps is updated fast instead of once per second", true, "fps_fast", this).requires(this.fpsEnabledSetting)
         this.fpsLowSetting = new ToggleSetting("Low fps display", "Display the minumum frame time next to fps (usefull for finding framedrops)", true, "fps_low", this).requires(this.fpsFastSetting)
@@ -111,7 +118,7 @@ class Hud extends Feature {
             .setToggleSetting(this.petEnabledSetting)
             .setLocationSetting(new LocationSetting("Pet Location", "Allows you to edit the location of the pet text", "pet_location", this, [10, 30, 1, 1])
                 .requires(this.petEnabledSetting)
-                .editTempText("&6Pet&7> &7[Lvl 100] &aEnderman"))
+                .editTempText(this.hudColorSetting.getValue() + "Pet&7> &7[Lvl 100] &aEnderman"))
         this.hudElements.push(this.petElement)
         this.scanGuiForPet = new ToggleSetting("Scan pets menu gui for selected pet", "Only disable if you get a lot of lag in the pets menu", true, "scan_pets_menu", this).requires(this.petEnabledSetting)
 
@@ -120,7 +127,7 @@ class Hud extends Feature {
             .setToggleSetting(this.locationEnabledSetting)
             .setLocationSetting(new LocationSetting("XYZ Location", "Allows you to edit the location of the location text", "location_location", this, [10, 120, 1, 1])
                 .requires(this.locationEnabledSetting)
-                .editTempText("&6Loc&7> &f123.456 | 123.456 | 123.456"))
+                .editTempText(this.hudColorSetting.getValue() + "Loc&7> &f123.456 | 123.456 | 123.456"))
         this.hudElements.push(this.locationElement)
         this.locationYEnabledSetting = new ToggleSetting("Show Y in location", "Wether to include ur Y value in location", true, "location_y_enabled", this).requires(this.locationEnabledSetting)
         this.locationOnlyDungSetting = new ToggleSetting("Only show location in dungeon", "(If u want to use this to show how to mine thru stairs)", false, "location_dung_enabled", this).requires(this.locationEnabledSetting)
@@ -138,7 +145,7 @@ class Hud extends Feature {
             .setToggleSetting(this.soulflowEnabledSetting)
             .setLocationSetting(new LocationSetting("Soulflow Location", "Allows you to edit the location of the soulflow text", "soulflow_location", this, [10, 40, 1, 1])
                 .requires(this.soulflowEnabledSetting)
-                .editTempText("&6Soulflow&7> &f12,345"))
+                .editTempText(this.hudColorSetting.getValue() + "Soulflow&7> &f12,345"))
         this.hudElements.push(this.soulflowElement)
 
         this.lagEnabled = new ToggleSetting("Show Lobby TPS", "Calculates the TPS of your current lobby (20=no lag)", true, "lobby_lag", this)
@@ -146,7 +153,7 @@ class Hud extends Feature {
             .setToggleSetting(this.lagEnabled)
             .setLocationSetting(new LocationSetting("Lobby TPS Location", "Allows you to edit the location of the TPS", "lobby_lag_location", this, [10, 60, 1, 1])
                 .requires(this.lagEnabled)
-                .editTempText("&6Tps&7> &f20.0"))
+                .editTempText(this.hudColorSetting.getValue() + "Tps&7> &f20.0"))
         this.hudElements.push(this.lagElement)
 
         this.witherImpactCooldownSetting = new ToggleSetting("Show Wither Impact Cooldown", "This will render a small cooldown above your crosshair", true, "wither_impact_cooldown_enabled", this)
@@ -155,12 +162,12 @@ class Hud extends Feature {
 
         this.showSpotifyPlaying = new ToggleSetting("Show Current Playing Spotify Song", "(WINDOWS + Spotify Desktop only)", false, "spotify_now_playing", this)
         this.spotifyElement = new HudTextElement()
-            .setText("&6Spotify&7> ")
+            .setText(this.hudColorSetting.getValue() + "Spotify&7> ")
             .setBaseEditWidth(Renderer.getStringWidth("Spotify> ") + 150)
             .setToggleSetting(this.showSpotifyPlaying)
             .setLocationSetting(new LocationSetting("Spotify Location", "Allows you to edit the location of the spotify text", "spotify_now_playing_location", this, [10, 80, 1, 1])
                 .requires(this.showSpotifyPlaying)
-                .editTempText("&6Spotify&7> &cNot open"))
+                .editTempText(this.hudColorSetting.getValue() + "Spotify&7> &cNot open"))
         this.hudElements.push(this.spotifyElement)
         this.spotifyElement2 = new HudTextElement().setLocationSetting({
             setParent: () => { },
@@ -173,11 +180,11 @@ class Hud extends Feature {
 
         this.showLobbyDay = new ToggleSetting("Show Current Lobby Day", "", true, "lobby_day", this)
         this.lobbyDayElement = new HudTextElement()
-            .setText("&6Day&7> &fLoading...")
+            .setText(this.hudColorSetting.getValue() + "Day&7> &fLoading...")
             .setToggleSetting(this.showLobbyDay)
             .setLocationSetting(new LocationSetting("Lobby Day Location", "Allows you to edit the location of the lobby day", "lobby_day_location", this, [10, 90, 1, 1])
                 .requires(this.showLobbyDay)
-                .editTempText("&6Day&7> &f5.15"))
+                .editTempText(this.hudColorSetting.getValue() + "Day&7> &f5.15"))
         this.showLobbyDayOnlyUnder30 = new ToggleSetting("Show Current Lobby Day ONLY WHEN under day 30", "", true, "lobby_day_30", this)
         this.hudElements.push(this.lobbyDayElement)
 
@@ -236,11 +243,11 @@ class Hud extends Feature {
         this.potsOutAlert = new ToggleSetting("Alert when pots are about to run out", "Will show in chat", true, "pots_out_alert", this)
         this.showPotsHud = new ToggleSetting("Show Pots On Hud", "", false, "pots_hud", this)
         this.potsHudElement = new HudTextElement()
-            .setText("&6Potions&7> &fLoading...")
+            .setText(this.hudColorSetting.getValue() + "Potions&7> &fLoading...")
             .setToggleSetting(this.showPotsHud)
             .setLocationSetting(new LocationSetting("Pots Hud Location", "Allows you to edit the location of the pots hud", "pots_hud_location", this, [10, 100, 1, 1])
                 .requires(this.showPotsHud)
-                .editTempText("&6God potion&7> &f28h 32m"))
+                .editTempText(this.hudColorSetting.getValue() + "God potion&7> &f28h 32m"))
         this.hudElements.push(this.potsHudElement)
 
         this.lastPotAlerts = {}
@@ -254,8 +261,8 @@ class Hud extends Feature {
             this.hudStat[i] = {}
             this.hudStat[i].enabled = new ToggleSetting("Hud Stat Slot #" + (i + 1), "Allows you to render a custom stat on your hud", false, "hud_stat_" + i, this)
             this.hudStat[i].type = new DropdownSetting("Hud Stat Slot #" + (i + 1) + " Type", "The type of stat to render", "weight", "hud_stat_" + i + "_type", this, hudStatTypes)
-            this.hudStat[i].location = new LocationSetting("Hud Stat Slot #" + (i + 1) + " Location", "Allows you to edit the location of the hud stat", "hud_stat_" + i + "_location", this, [10, 50 + i * 10, 1, 1]).editTempText("&6Hud Stat&7> &f12,345")
-            this.hudStat[i].textElement = new HudTextElement().setToggleSetting(this.hudStat[i].enabled).setLocationSetting(this.hudStat[i].location).setText("&6Hud Stat&7> &fLoading...")
+            this.hudStat[i].location = new LocationSetting("Hud Stat Slot #" + (i + 1) + " Location", "Allows you to edit the location of the hud stat", "hud_stat_" + i + "_location", this, [10, 50 + i * 10, 1, 1]).editTempText(this.hudColorSetting.getValue() + "Hud Stat&7> &f12,345")
+            this.hudStat[i].textElement = new HudTextElement().setToggleSetting(this.hudStat[i].enabled).setLocationSetting(this.hudStat[i].location).setText(this.hudColorSetting.getValue() + "Hud Stat&7> &fLoading...")
             this.hudStat[i].onlySb = new ToggleSetting("Hud Stat Slot #" + (i + 1) + " Only SB", "Only render this stat when you are in skyblock", true, "hud_stat_" + i + "_only_sb", this).requires(this.hudStat[i].enabled)
 
             this.hudStat[i].location.requires(this.hudStat[i].enabled)
@@ -272,7 +279,7 @@ class Hud extends Feature {
             .setToggleSetting(this.showDragonDamages)
             .setLocationSetting(new LocationSetting("Damage Location", "Allows you to edit the location of the damage leaderboard", "dragon_dmg_location", this, [50, 40, 1, 1])
                 .requires(this.showDragonDamages)
-                .editTempText("&6Old Dragon &7(&f13.4&7M HP)\n&7- &fSoopyboo32&7:&f 13.4&7M\n&7- &fCamCamSatNav&7:&f 12.3&7M\n&7- &fMuffixy&7:&f 3.4&7M"))
+                .editTempText(this.hudColorSetting.getValue() + "Old Dragon &7(&f13.4&7M HP)\n&7- &fSoopyboo32&7:&f 13.4&7M\n&7- &fCamCamSatNav&7:&f 12.3&7M\n&7- &fMuffixy&7:&f 3.4&7M"))
         this.hudElements.push(this.dragonDamageElement)
 
 
@@ -341,30 +348,30 @@ class Hud extends Feature {
 
 
         this.petLevels = {}
-        this.petText = "&6Pet&7> &fLoading..."
+        this.petText = this.hudColorSetting.getValue() + "Pet&7> &fLoading..."
         this.petElement.setText(this.petText)
         this.registerChat("&cAutopet &eequipped your ${pet}&e! &a&lVIEW RULE&r", (pet) => {
-            this.petElement.setText("&6Pet&7> " + pet)
-            this.petText = "&6Pet&7> " + pet
+            this.petElement.setText(this.hudColorSetting.getValue() + "Pet&7> " + pet)
+            this.petText = this.hudColorSetting.getValue() + "Pet&7> " + pet
 
             this.lastSwappedPet = Date.now()
         })
         this.registerChat("&r&aYou summoned your &r${pet}&r&a!&r", (pet) => {
-            this.petElement.setText("&6Pet&7> &7[Lvl " + (this.petLevels[pet.replace("&", "§")] || "??") + "] " + pet)
-            this.petText = "&6Pet&7> &7[Lvl " + (this.petLevels[pet.replace("&", "§")] || "??") + "] " + pet
+            this.petElement.setText(this.hudColorSetting.getValue() + "Pet&7> &7[Lvl " + (this.petLevels[pet.replace("&", "§")] || "??") + "] " + pet)
+            this.petText = this.hudColorSetting.getValue() + "Pet&7> &7[Lvl " + (this.petLevels[pet.replace("&", "§")] || "??") + "] " + pet
 
             this.lastSwappedPet = Date.now()
         })
         this.registerChat("&r&aYou despawned your &r${*}&r&a!&r", () => {
-            this.petElement.setText("&6Pet&7> &cNone")
-            this.petText = "&6Pet&7> &cNone"
+            this.petElement.setText(this.hudColorSetting.getValue() + "Pet&7> &cNone")
+            this.petText = this.hudColorSetting.getValue() + "Pet&7> &cNone"
 
             this.lastSwappedPet = Date.now()
         })
         this.registerChat("&r&aYour &r${pet} &r&alevelled up to level &r&9${level}&r&a!&r", (pet, level) => {
             if (ChatLib.removeFormatting(this.petText.split("] ")[1].trim()) === ChatLib.removeFormatting(pet.trim())) {
-                this.petElement.setText("&6Pet&7> &7[Lvl " + (level || "??") + "] " + pet)
-                this.petText = "&6Pet&7> &7[Lvl " + (level || "??") + "] " + pet
+                this.petElement.setText(this.hudColorSetting.getValue() + "Pet&7> &7[Lvl " + (level || "??") + "] " + pet)
+                this.petText = this.hudColorSetting.getValue() + "Pet&7> &7[Lvl " + (level || "??") + "] " + pet
                 this.lastSwappedPet = Date.now()
             }
         })
@@ -401,10 +408,10 @@ class Hud extends Feature {
         if (World.getTime() / 20 / 60 / 20 > 30 && this.showLobbyDayOnlyUnder30.getValue()) {
             this.lobbyDayElement.setText("")
         } else {
-            if (World.getTime() !== 0) this.lobbyDayElement.setText("&6Day&7> &f" + (World.getTime() / 20 / 60 / 20).toFixed(2))
+            if (World.getTime() !== 0) this.lobbyDayElement.setText(this.hudColorSetting.getValue() + "Day&7> &f" + (World.getTime() / 20 / 60 / 20).toFixed(2))
         }
 
-        this.ppsCounterElement.setText("&6Packets&7> &f" + numberWithCommas(this.packetsSent) + "&7-&f" + numberWithCommas(this.packetsRecieved))
+        this.ppsCounterElement.setText(this.hudColorSetting.getValue() + "Packets&7> &f" + numberWithCommas(this.packetsSent) + "&7-&f" + numberWithCommas(this.packetsRecieved))
 
         this.packetsSent = 0
         this.packetsRecieved = 0
@@ -429,18 +436,18 @@ class Hud extends Feature {
         this.secondPackets = 0
 
         if (this.lastTps.length > 1) {
-            this.lagElement.setText("&6Tps&7> &f" + Math.min(20, this.tps).toFixed(1))
+            this.lagElement.setText(this.hudColorSetting.getValue() + "Tps&7> &f" + Math.min(20, this.tps).toFixed(1))
         } else {
-            this.lagElement.setText("&6Tps&7> &fLOADING")
+            this.lagElement.setText(this.hudColorSetting.getValue() + "Tps&7> &fLOADING")
         }
     }
 
     tick() {
         if (this.fpsFastSetting.getValue()) {
             if (this.fpsLowSetting.getValue()) {
-                this.fpsElement.setText("&6Fps&7> &f" + Math.round(this.fps.get()) + "&7/" + Math.round(this.lowFps.get()))
+                this.fpsElement.setText(this.hudColorSetting.getValue() + "Fps&7> &f" + Math.round(this.fps.get()) + "&7/" + Math.round(this.lowFps.get()))
             } else {
-                this.fpsElement.setText("&6Fps&7> &f" + Math.round(this.fps.get()))
+                this.fpsElement.setText(this.hudColorSetting.getValue() + "Fps&7> &f" + Math.round(this.fps.get()))
             }
         }
 
@@ -456,7 +463,7 @@ class Hud extends Feature {
 
                 let locString = locData.join("&7 | &f")
 
-                this.locationElement.setText("&6Loc&7> &f" + locString)
+                this.locationElement.setText(this.hudColorSetting.getValue() + "Loc&7> &f" + locString)
             } else {
                 this.locationElement.setText("")
             }
@@ -571,7 +578,7 @@ class Hud extends Feature {
             if (this.fpsLowSetting.getValue()) this.lowFps.set(this.lastFrameRatesS.reduce((a, b) => a + b, 0) / this.lastFrameRatesS.length, 200)
         } else {
             fps = Client.getFPS()
-            this.fpsElement.setText("&6Fps&7> &f" + fps)
+            this.fpsElement.setText(this.hudColorSetting.getValue() + "Fps&7> &f" + fps)
         }
 
         let cpsText = CPS.getLeftClicksAverage()
@@ -583,7 +590,7 @@ class Hud extends Feature {
                 cpsText += CPS.getRightClicksAverage()
             }
         }
-        this.cpsElement.setText("&6Cps&7> &f" + cpsText)
+        this.cpsElement.setText(this.hudColorSetting.getValue() + "Cps&7> &f" + cpsText)
 
         //Scan opened inventory for all pet levels
         if (this.scanGuiForPet.getValue() && Player && Player.getContainer() && Player.getContainer().getName().includes(") Pets")) {
@@ -596,8 +603,8 @@ class Hud extends Feature {
                     if (Date.now() - this.lastSwappedPet > 1000) {
                         getLore(inv[i]).forEach(line => {
                             if (line.includes("Click to despawn!")) {
-                                this.petElement.setText("&6Pet&7> &7" + inv[i].getName().split("(")[0])
-                                this.petText = "&6Pet&7> &7" + inv[i].getName().split("(")[0]
+                                this.petElement.setText(this.hudColorSetting.getValue() + "Pet&7> &7" + inv[i].getName().split("(")[0])
+                                this.petText = this.hudColorSetting.getValue() + "Pet&7> &7" + inv[i].getName().split("(")[0]
                             }
                         })
                     }
@@ -670,7 +677,7 @@ class Hud extends Feature {
         if (this.showThunderingTimer.getValue()) {
             let time = rainTimer()
 
-            let text = "&6Thunder&7> &7"
+            let text = this.hudColorSetting.getValue() + "Thunder&7> &7"
             if (time.isThundering) {
                 text += "&aNOW &7(&f" + formatTime(time.thunderstorm) + "&7)"
             } else {
@@ -720,7 +727,7 @@ class Hud extends Feature {
             return;
         }
 
-        this.soulflowElement.setText("&6Soulflow&7> &f" + this.numberUtils.numberWithCommas(this.lastStatData.soulflow))
+        this.soulflowElement.setText(this.hudColorSetting.getValue() + "Soulflow&7> &f" + this.numberUtils.numberWithCommas(this.lastStatData.soulflow))
     }
 
     updatePotsTime() {
@@ -809,7 +816,7 @@ class Hud extends Feature {
             this.updatePotsData(this.lastStatData, lastSave)
             if (this.lastStatData.soulflow) this.apiSoulflow = true
 
-            if (this.apiSoulflow) this.soulflowElement.setText("&6Soulflow&7> &f" + this.numberUtils.numberWithCommas(this.lastStatData.soulflow))
+            if (this.apiSoulflow) this.soulflowElement.setText(this.hudColorSetting.getValue() + "Soulflow&7> &f" + this.numberUtils.numberWithCommas(this.lastStatData.soulflow))
         }
 
         if (this.showLevelUpMessage.getValue()) {
@@ -928,41 +935,41 @@ class Hud extends Feature {
 
         let string = "Unknown stat"
         if (type === "totaldeaths") {
-            string = "&6Deaths&7> &f" + this.numberUtils.numberWithCommas(this.lastStatData.death_count)
+            string = this.hudColorSetting.getValue() + "Deaths&7> &f" + this.numberUtils.numberWithCommas(this.lastStatData.death_count)
         }
         if (type === "cata") {
             let cataData = getLevelByXp(this.lastStatData.dungeons.dungeon_types.catacombs.experience, 2, Infinity)
-            string = "&6Cata&7> &f" + (~~((cataData.level + cataData.progress) * 100) / 100).toFixed(2) + " &7(" + this.numberUtils.numberWithCommas(cataData.xpCurrent) + (cataData.level === 50 ? "" : "/" + this.numberUtils.numberWithCommas(cataData.xpForNext)) + ")"
+            string = this.hudColorSetting.getValue() + "Cata&7> &f" + (~~((cataData.level + cataData.progress) * 100) / 100).toFixed(2) + " &7(" + this.numberUtils.numberWithCommas(cataData.xpCurrent) + (cataData.level === 50 ? "" : "/" + this.numberUtils.numberWithCommas(cataData.xpForNext)) + ")"
         }
         if (type === "mythril_powder") {
-            string = "&6Mithril Powder&7> &f" + numberWithCommas(this.lastStatData.mining_core.powder_mithril_total)
+            string = this.hudColorSetting.getValue() + "Mithril Powder&7> &f" + numberWithCommas(this.lastStatData.mining_core.powder_mithril_total)
         }
         if (type === "gemstone_powder") {
-            string = "&6Gemstone Powder&7> &f" + numberWithCommas(this.lastStatData.mining_core.powder_gemstone_total)
+            string = this.hudColorSetting.getValue() + "Gemstone Powder&7> &f" + numberWithCommas(this.lastStatData.mining_core.powder_gemstone_total)
         }
 
         Object.keys(this.skillLevelCaps).forEach(skill => {
             if (type === skill) {
                 let skillData = getLevelByXp(this.lastStatData[skill], 0, this.extendLevelCap.getValue() ? Infinity : this.skillLevelCaps[skill])
                 this.lastSkillLevel[skill] = skillData.level;
-                string = "&6" + firstLetterCapital(skill.split("_").pop()) + "&7> &f" + (skillData.level + skillData.progress).toFixed(2) + " &7(" + this.numberUtils.numberWithCommas(skillData.xpCurrent) + (skillData.level === this.skillLevelCaps[skill] ? "" : "/" + this.numberUtils.numberWithCommas(skillData.xpForNext)) + ")"
+                string = this.hudColorSetting.getValue() + "" + firstLetterCapital(skill.split("_").pop()) + "&7> &f" + (skillData.level + skillData.progress).toFixed(2) + " &7(" + this.numberUtils.numberWithCommas(skillData.xpCurrent) + (skillData.level === this.skillLevelCaps[skill] ? "" : "/" + this.numberUtils.numberWithCommas(skillData.xpForNext)) + ")"
             }
         })
 
         if (type === "completions_enterance") {
-            string = "&6E Comps&7> &f" + this.numberUtils.numberWithCommas((this.lastStatData.dungeons?.dungeon_types?.catacombs?.tier_completions?.[0] || 0))
+            string = this.hudColorSetting.getValue() + "E Comps&7> &f" + this.numberUtils.numberWithCommas((this.lastStatData.dungeons?.dungeon_types?.catacombs?.tier_completions?.[0] || 0))
         }
         if (type.startsWith("completions_floor_")) {
             let floor = parseInt(type.split("_").pop())
-            string = "&6F" + floor + " Comps&7> &f" + this.numberUtils.numberWithCommas((this.lastStatData.dungeons?.dungeon_types?.catacombs?.tier_completions?.[floor] || 0))
+            string = this.hudColorSetting.getValue() + "F" + floor + " Comps&7> &f" + this.numberUtils.numberWithCommas((this.lastStatData.dungeons?.dungeon_types?.catacombs?.tier_completions?.[floor] || 0))
         }
         if (type.startsWith("completions_master_")) {
             let floor = parseInt(type.split("_").pop())
-            string = "&6M" + floor + " Comps&7> &f" + this.numberUtils.numberWithCommas((this.lastStatData.dungeons?.dungeon_types?.master_catacombs?.tier_completions?.[floor] || 0))
+            string = this.hudColorSetting.getValue() + "M" + floor + " Comps&7> &f" + this.numberUtils.numberWithCommas((this.lastStatData.dungeons?.dungeon_types?.master_catacombs?.tier_completions?.[floor] || 0))
         }
         if (type.startsWith("completions_dungeon_")) {
             let floor = parseInt(type.split("_").pop())
-            string = "&6Dungeon " + floor + " Comps&7> &f" + this.numberUtils.numberWithCommas((this.lastStatData.dungeons?.dungeon_types?.catacombs?.tier_completions?.[floor] || 0) + (this.lastStatData.dungeons?.dungeon_types?.master_catacombs?.tier_completions?.[floor] || 0))
+            string = this.hudColorSetting.getValue() + "Dungeon " + floor + " Comps&7> &f" + this.numberUtils.numberWithCommas((this.lastStatData.dungeons?.dungeon_types?.catacombs?.tier_completions?.[floor] || 0) + (this.lastStatData.dungeons?.dungeon_types?.master_catacombs?.tier_completions?.[floor] || 0))
         }
 
         thing.textElement.setText(string)
@@ -978,8 +985,8 @@ class Hud extends Feature {
         let pet = data.data.profiles[data.data.stats.currentProfileId].members[Player.getUUID().replace(/-/g, "")].selectedPet
 
         if (!pet) {
-            this.petElement.setText("&6Pet&7> &cNone")
-            this.petText = "&6Pet&7> &cNone"
+            this.petElement.setText(this.hudColorSetting.getValue() + "Pet&7> &cNone")
+            this.petText = this.hudColorSetting.getValue() + "Pet&7> &cNone"
             return;
         }
 
@@ -992,7 +999,7 @@ class Hud extends Feature {
             "MYTHIC": "&d"
         }
 
-        this.petText = "&6Pet&7> &7[Lvl " + (pet.level.level || "??") + "] " + petTierColor[pet.tier] + pet.name
+        this.petText = this.hudColorSetting.getValue() + "Pet&7> &7[Lvl " + (pet.level.level || "??") + "] " + petTierColor[pet.tier] + pet.name
         this.petElement.setText(this.petText)
     }
 
@@ -1002,7 +1009,7 @@ class Hud extends Feature {
         this.secondPackets = 0
         this.tps = -2
         this.lastTps = []
-        this.lagElement.setText("&6Tps&7> &fLOADING")
+        this.lagElement.setText(this.hudColorSetting.getValue() + "Tps&7> &fLOADING")
     }
 }
 
