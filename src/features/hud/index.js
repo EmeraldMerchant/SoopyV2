@@ -73,7 +73,7 @@ class Hud extends Feature {
 
         this.numberUtils = require("../../utils/numberUtils.js")
         
-        this.hudColorSetting = new DropdownSetting("Color to Render HUD Elements", "Dark mode currently breaks this :/", "&6", "hud_element_color", this, {
+        this.hudColorSetting = new DropdownSetting("Color to Render HUD Elements", "Dark mode currently displays incorrect colors", "&6", "hud_element_color", this, {
             "&0": "§00 (Black)",
             "&1": "§11 (Dark Blue)",
             "&2": "§22 (Green)",
