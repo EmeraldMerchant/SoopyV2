@@ -234,104 +234,109 @@
             }
         },
         "blaze": {
+            "Enchanted Blaze Powder": {
+                "thing": "&aEnchanted Blaze Powder",
+                "baseMeter": 2351,
+                "dropRarity": "&9Occasional"
+            },
             "◆ Lavatears Rune I": {
                 "thing": "&c◆ Lavatears Rune I",
-                "baseMeter": 22471,
+                "baseMeter": 25582,
                 "dropRarity": "&5Extraordinary"
             },
             "Wisp's Ice-Flavored Water I Splash Potion": {
                 "thing": "&fWisp's Ice-Flavored Water I Splash Potion",
-                "baseMeter": 17700,
+                "baseMeter": 17800,
                 "dropRarity": "&5Extraordinary"
             },
             "Bundle of Magma Arrows": {
                 "thing": "&5Bundle of Magma Arrows",
-                "baseMeter": 5900,
+                "baseMeter": 5933,
                 "dropRarity": "&bRare"
             },
             "Mana Disintegrator": {
                 "thing": "&9Mana Disintegrator",
-                "baseMeter": 12642,
+                "baseMeter": 12714,
                 "dropRarity": "&bRare"
             },
             "Scorched Books": {
                 "thing": "&dScorched Books",
-                "baseMeter": 22125,
+                "baseMeter": 22250,
                 "dropRarity": "&5Extraordinary"
             },
             "Kelvin Inverter": {
                 "thing": "&9Kelvin Inverter",
-                "baseMeter": 17700,
+                "baseMeter": 17800,
                 "dropRarity": "&5Extraordinary"
             },
             "Blaze Rod Distillate": {
                 "thing": "&9Blaze Rod Distillate",
-                "baseMeter": 9833,
+                "baseMeter": 12714,
                 "dropRarity": "&bRare"
             },
             "Glowstone Distillate": {
                 "thing": "&9Glowstone Distillate",
-                "baseMeter": 9833,
+                "baseMeter": 12714,
                 "dropRarity": "&bRare"
             },
             "Magma Cream Distillate": {
                 "thing": "&9Magma Cream Distillate",
-                "baseMeter": 9833,
+                "baseMeter": 12714,
                 "dropRarity": "&bRare"
             },
             "Nether Wart Distillate": {
                 "thing": "&9Nether Wart Distillate",
-                "baseMeter": 9833,
+                "baseMeter": 12714,
                 "dropRarity": "&bRare"
             },
             "Gabagool Distillate": {
                 "thing": "&9Gabagool Distillate",
-                "baseMeter": 17700,
+                "baseMeter": 6357,
                 "dropRarity": "&5Extraordinary"
             },
             "Scorched Power Crystal": {
                 "thing": "&6Scorched Power Crystal",
-                "baseMeter": 15416,
+                "baseMeter": 15500,
                 "dropRarity": "&bRare"
             },
             "Archfiend Dice": {
                 "thing": "&5Archfiend Dice",
-                "baseMeter": 46250,
+                "baseMeter": 46499,
                 "dropRarity": "&5Extraordinary"
             },
             "Fire Aspect III": {
                 "thing": "&fFire Aspect III",
-                "baseMeter": 39368,
+                "baseMeter": 39568,
                 "dropRarity": "&5Extraordinary"
             },
             "◆ Fiery Burst Rune I": {
                 "thing": "&c◆ Fiery Burst Rune I",
-                "baseMeter": 252800,
+                "baseMeter": 287800,
                 "dropRarity": "&dPray RNGesus"
             },
             "❂ Flawed Opal Gemstone": {
                 "thing": "&a❂ Flawed Opal Gemstone",
-                "baseMeter": 17894,
+                "baseMeter": 17985,
                 "dropRarity": "&5Extraordinary"
             },
             "Duplex I": {
                 "thing": "&d&lDuplex I",
-                "baseMeter": 28119,
+                "baseMeter": 28262,
                 "dropRarity": "&5Extraordinary"
             },
             "High Class Archfiend Dice": {
                 "thing": "&6High Class Archfiend Dice",
-                "baseMeter": 202239,
+                "baseMeter": 230240,
                 "dropRarity": "&dPray RNGesus"
             },
             "Wilson's Engineering Plans": {
                 "thing": "&6Wilson's Engineering Plans",
-                "baseMeter": 578941,
+                "baseMeter": 581882,
                 "dropRarity": "&dPray RNGesus"
             },
             "Subzero Inverter": {
                 "thing": "&6Subzero Inverter",
-                "baseMeter": 578941,
+                "baseMeter": 581882,
                 "dropRarity": "&dPray RNGesus"
             }
         }
